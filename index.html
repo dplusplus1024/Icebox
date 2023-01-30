@@ -71,7 +71,7 @@ b {
   padding-top:30px;
   padding-bottom:40px;
 }
-#back, #faq-button {
+#back, #faq-button, #logo {
   cursor:pointer;
 }
 footer a {
@@ -186,17 +186,17 @@ button:focus {
 
 <center>
 <br><br><br>
-<img src=darkmode.png id="logo">
+<img src=darkmode.png id="logo" onclick="back()">
 <!-- <img src=icebox.png id="logo"> -->
 <div class="container" style="max-width:650px; width:100%;">
 <div id="main-div" style="margin-top:-11px;">
 <div id="welcome">
 <h1>Put your xpubs<span class="hide-on-desktop"><br></span> <span id="freezer">in the freezer.</span></h1>
 <div style="text-align:justify">
-  Are you a 2-of-3 multisig enjoyer in need of an immutable backup of your extended public keys? You've come to the right place! Check out our <a href="#faqs" target="_self" onclick="faq()">FAQ page</a> to get aquainted with the Icebox protocol.
+  Are you a 2-of-3 multisig enjoyer in need of an immutable backup of your extended public keys? You've come to the right place! Check out our <a href="#" target="_self" onclick="faq()">FAQ page</a> to get aquainted with the Icebox protocol.
 </div>
 <br>
-<button onclick="backup()">Back Up Your Wallet</button><span class="hide-on-mobile"> &nbsp;&nbsp;&nbsp; </span><span class="hide-on-desktop"><br><br></span><button onclick="retrieve()">Retrieve from Backup</button>
+<button onclick="backup()">Back Up Your Wallet</button><span class="hide-on-mobile"> &nbsp;&nbsp;&nbsp; </span><span class="hide-on-desktop"><br><br></span><button onclick="retrieve()">Retrieve From Backup</button>
 </div> <!-- welcome div -->
 
 <div id="backup">
@@ -218,7 +218,11 @@ Back up your <span class="hide-on-mobile">extended public keys in a place<br>tha
 
 <div id="retrieve">
 <h1>retrieve from backup</h1>
-Can't find one of your extended public keys? Tell us the&nbsp;<span class="hide-on-mobile"><br></span><span id="line-two">two that you remember, and we'll look for the lost one.</span><br><br>
+<!-- Desktop verbiage -->
+<div class="hide-on-mobile">Can't find one of your extended public keys? Tell us the&nbsp;<br><span id="line-two">two that you remember, and we'll look for the lost one.</span></div>
+<!-- Mobile verbiage -->
+<div class="hide-on-desktop" style="text-align:justify; width:96.5%">Can't find one of your xpubs? Tell us the two that you remember, and we'll look for the lost one.</div>
+<br>
 <form action="https://localhost:5000/retrieve" method="post" id="my-form" onsubmit="return false">
 <label>Key 1</label> <input id="xpub1-lookup" type="text" name="xpub1Lookup" value="xpub6EVNWuKzUa9SHCq4BTzRtVJM2VA7jejDLtjdwbbCsLHhufYC3Yd4hU7NhEaA12qAQvVC7qUjGu634ZbdJxNYpG7iYwnwGDYDN3MFk53DFVJ">
 <br>
@@ -326,7 +330,7 @@ Can't find one of your extended public keys? Tell us the&nbsp;<span class="hide-
       </h2>
       <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="heading8" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
-          Your multisig configuration file contains your wallet's xpubs, derivation paths, and master fingerprints. Icebox has your xpubs covered, but what about the other parts? Fingerprints are less important, so technically it's okay if we omit them. Derivation paths, however, are an absolutely necessary part of your backup. We strongly suggest that you stick to an industry standard such as m/48'/0'/0'/2', carefully notating these BIP32 paths on your seed plates with your private keys.
+          Your multisig configuration file contains your wallet's xpubs, derivation paths, and master fingerprints. Icebox has your xpubs covered, but what about the other parts? Fingerprints are less important, so technically it's okay if we omit them. Derivation paths, however, are an absolutely necessary part of your backup. We strongly suggest that you stick to an industry standard such as m/48'/0'/0'/2', carefully notating these BIP32 paths on your seed plates along with your private keys.
         </div>
       </div>
     </div>
