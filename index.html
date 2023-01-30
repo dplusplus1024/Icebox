@@ -26,6 +26,9 @@ body {
   /* border:1px solid black; */
   /* border-bottom:0px; */
 }
+.spacer {
+  margin-top:10px;
+}
 h1 {
   margin-top:10px;
   letter-spacing:.5px;
@@ -103,8 +106,12 @@ hr {
 li {
   margin-bottom:10px;
 }
+ol {
+  padding-left: 15px;
+}​
 ol > li::marker {
-  font-weight:500;
+  /* font-weight:bold; */
+  /* font-weight:500; */
 }
 button {
   background-color:black;
@@ -123,11 +130,13 @@ button:focus {
     color:black;
 }
 .accordion-body {
-    text-align: justify;
+    font-size:15px;
+    text-align:justify;
 }
+
 /* DESKTOP VIEW */
 @media (min-width: 600px) {
-  #hide-on-desktop {
+  .hide-on-desktop {
     display:none;
   }
   #line-two {
@@ -136,6 +145,16 @@ button:focus {
   .txid {
     font-size:15px;
   }
+  .accordion-body {
+    padding: 30px 40px;
+  }
+  .accordion-flush .accordion-item .accordion-button {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  #welcome {
+    padding: 40px;
+  }
   #footer-social {
     line-height:10px;
   }
@@ -143,7 +162,10 @@ button:focus {
 
 /* MOBILE VIEW */
 @media (max-width: 599px) {
-  #hide-on-mobile {
+  .hide-on-mobile {
+    display:none;
+  }
+  label {
     display:none;
   }
   #freezer {
@@ -169,18 +191,18 @@ button:focus {
 <div class="container" style="max-width:650px; width:100%;">
 <div id="main-div" style="margin-top:-11px;">
 <div id="welcome">
-<h1>Put your xpubs<span id="hide-on-desktop"><br></span> <span id="freezer">in the freezer.</span></h1>
+<h1>Put your xpubs<span class="hide-on-desktop"><br></span> <span id="freezer">in the freezer.</span></h1>
 <div style="text-align:justify">
   Are you a 2-of-3 multisig enjoyer in need of an immutable backup of your extended public keys? You've come to the right place! Check out our <a href="#faqs" target="_self" onclick="faq()">FAQ page</a> to get aquainted with the Icebox protocol.
 </div>
 <br>
-<button onclick="backup()">Back Up Your Wallet</button><span id="hide-on-mobile"> &nbsp;&nbsp;&nbsp; </span><span id="hide-on-desktop"><br><br></span><button onclick="retrieve()">Retrieve from Backup</button>
+<button onclick="backup()">Back Up Your Wallet</button><span class="hide-on-mobile"> &nbsp;&nbsp;&nbsp; </span><span class="hide-on-desktop"><br><br></span><button onclick="retrieve()">Retrieve from Backup</button>
 </div> <!-- welcome div -->
 
 <div id="backup">
-<h1>back up your public keys</h1>
-Back up your extended public keys in a place<span id="hide-on-mobile"><br></span> that'll never get lost - the bitcoin blockchain!<br><br>
-<form action="http://localhost:5000/backup" method="post" id="my-form-backup" onsubmit="return false">
+<h1>back up your <span class="hide-on-mobile">public keys</span><span class="hide-on-desktop">xpubs</span></h1>
+Back up your <span class="hide-on-mobile">extended public keys in a place<br>that'll</span><span class="hide-on-desktop">xpubs in a place that will </span><span class="hide-on-desktop"><br></span> never get lost<span class="hide-on-mobile"> -</span><span class="hide-on-desktop">,</span> the bitcoin blockchain!<br><br>
+<form action="https://localhost:5000/backup" method="post" id="my-form-backup" onsubmit="return false">
 <label>Key 1</label> <input id="xpub1" type="text" name="xpub1" value="xpub6EVNWuKzUa9SHCq4BTzRtVJM2VA7jejDLtjdwbbCsLHhufYC3Yd4hU7NhEaA12qAQvVC7qUjGu634ZbdJxNYpG7iYwnwGDYDN3MFk53DFVJ">
 <br>
 <label>Key 2</label> <input id="xpub2" type="text" name="xpub2" value="xpub6EFTuPq8fCVVUtJwrNrLvSzs1SheJuiXD7vLPT9iHs1f3ZYqcxGK3W5mwz3ES1tkSYUCDDe6AXpvUfdkgv1fayotLNMhj5Wwk9Uc3un99Wc">
@@ -196,8 +218,8 @@ Back up your extended public keys in a place<span id="hide-on-mobile"><br></span
 
 <div id="retrieve">
 <h1>retrieve from backup</h1>
-Can't find one of your extended public keys? Tell us the&nbsp;<span id="hide-on-mobile"><br></span><span id="line-two">two that you remember, and we'll look for the lost one.</span><br><br>
-<form action="http://localhost:5000/retrieve" method="post" id="my-form" onsubmit="return false">
+Can't find one of your extended public keys? Tell us the&nbsp;<span class="hide-on-mobile"><br></span><span id="line-two">two that you remember, and we'll look for the lost one.</span><br><br>
+<form action="https://localhost:5000/retrieve" method="post" id="my-form" onsubmit="return false">
 <label>Key 1</label> <input id="xpub1-lookup" type="text" name="xpub1Lookup" value="xpub6EVNWuKzUa9SHCq4BTzRtVJM2VA7jejDLtjdwbbCsLHhufYC3Yd4hU7NhEaA12qAQvVC7qUjGu634ZbdJxNYpG7iYwnwGDYDN3MFk53DFVJ">
 <br>
 <label>Key 2</label> <input id="xpub2-lookup" type="text" name="xpub2Lookup" value="xpub6EFTuPq8fCVVUtJwrNrLvSzs1SheJuiXD7vLPT9iHs1f3ZYqcxGK3W5mwz3ES1tkSYUCDDe6AXpvUfdkgv1fayotLNMhj5Wwk9Uc3un99Wc">
@@ -211,14 +233,14 @@ Can't find one of your extended public keys? Tell us the&nbsp;<span id="hide-on-
 
 <div id="faqs">
   <h1>Your Questions, Answered.</h1>
-  <div class="accordion accordion-flush" id="accordionExample">
+  <div class="accordion accordion-flush" id="accordionFAQ">
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingOne">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           What is Icebox?
         </button>
       </h2>
-      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionFAQ">
         <div class="accordion-body collapsed">
           Icebox is an open source protocol for backing up and safely storing your multisig xpubs on the bitcoin blockchain. Transaction fees are paid using Lightning invoices to protect your privacy, leaving no on-chain footprint traceable back to your identity.
         </div>
@@ -230,7 +252,7 @@ Can't find one of your extended public keys? Tell us the&nbsp;<span id="hide-on-
           Why would I need Icebox?
         </button>
       </h2>
-      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
           Let's look at a commonly used multisig wallet: a 2-of-3 quorum. We need two keys to sign a transaction, meaning it's okay if one of the three gets lost. What not everyone knows, however, is that keys actually come in public/private key pairs, and while it's fine to lose a single private key, we absolutely cannot afford to lose its corresponding extended public key, or xpub for short. If we did, we'd be locked out of our bitcoin forever, Laura!
         </div>
@@ -242,95 +264,107 @@ Can't find one of your extended public keys? Tell us the&nbsp;<span id="hide-on-
           I won't lose my xpubs.
         </button>
       </h2>
-      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
           Currently there is no user-friendly way to back up public keys that will stand the test of time. While private keys can easily be translated into English words using BIP39 and stamped onto metal, few bitcoiners are protecting their precious xpubs with this same amount of effort and security. Most will store them on an SD card or solid state drive, but with a limited lifespan of only about 10 years or so, that's not enough time to protect your bitcoin for your grandchildren.
         </div>
       </div>
     </div>
     <div class="accordion-item">
-      <h2 class="accordion-header" id="headingThree">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapseThree">
+      <h2 class="accordion-header" id="heading4">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
           I can just re-derive my xpubs.
         </button>
       </h2>
-      <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordionExample">
+      <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
           If you don't lose any of your private keys, you have no problem. But the whole point of having a 2-of-3 multisig wallet is that you're mentally prepared to incur one key loss. If your backup plan is to simply re-derive all of your public keys, you're ngmi.
         </div>
       </div>
     </div>
     <div class="accordion-item">
-      <h2 class="accordion-header" id="headingThree">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapseThree">
+      <h2 class="accordion-header" id="heading5">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
           How can I protect my xpubs?
         </button>
       </h2>
-      <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#accordionExample">
+      <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
           All electronic media - hard drives, solid state drives, SD cards, CDs, even "the cloud" - won't last forever and cannot withstand fire, flood, water, or shock. For significant amounts of bitcoin, your best option is to use a metal engraver to etch your xpubs onto steel or alternately, use Icebox with the coldest storage there is - the immutable bitcoin blockchain.
         </div>
       </div>
     </div>
     <div class="accordion-item">
-      <h2 class="accordion-header" id="headingThree">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapseThree">
+      <h2 class="accordion-header" id="heading6">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
           How does Icebox work?
         </button>
       </h2>
-      <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="heading6" data-bs-parent="#accordionExample">
+      <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="heading6" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
-        For a 2-of-3 multisig wallet, Icebox creates three on-chain transactions to store each one of your precious xpubs in an OP_RETURN. Once these transactions are confirmed, they're not going anywhere, and your grandkids will thank you later.
+        For a 2-of-3 multisig wallet, Icebox creates three on-chain transactions to store each one of your xpubs in an OP_RETURN. Once these transactions are confirmed, they're not going anywhere, and your grandkids will thank you later.
       </div>
       </div>
     </div>
     <div class="accordion-item">
-      <h2 class="accordion-header" id="headingThree">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapseThree">
+      <h2 class="accordion-header" id="heading7">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
           Are all quorums supported?
         </button>
       </h2>
-      <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="heading7" data-bs-parent="#accordionExample">
+      <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="heading7" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
-        Currently, Icebox only supports 2-of-3 multisig wallets. However, if you ask D++ nicely, she may consider expanding compatibility to additional thresholds or even creating a custom backup just for you.
+        Currently, Icebox supports 2-of-3 multisig wallets. However, if you ask D++ nicely, she may consider expanding compatibility to additional thresholds or even creating a custom backup just for you.
       </div>
       </div>
     </div>
     <div class="accordion-item">
-      <h2 class="accordion-header" id="headingThree">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTech" aria-expanded="false" aria-controls="collapseThree">
+      <h2 class="accordion-header" id="heading8">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+          What about my wallet config file?
+        </button>
+      </h2>
+      <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="heading8" data-bs-parent="#accordionFAQ">
+        <div class="accordion-body">
+          Your multisig configuration file contains your wallet's xpubs, derivation paths, and master fingerprints. Icebox has your xpubs covered, but what about the other parts? Fingerprints are less important, so technically it's okay if we omit them. Derivation paths, however, are an absolutely necessary part of your backup. We strongly suggest that you stick to an industry standard such as m/48'/0'/0'/2', carefully notating these BIP32 paths on your seed plates with your private keys.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTech">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTech" aria-expanded="false" aria-controls="collapseTech">
           What are the technical details?
         </button>
       </h2>
-      <div id="collapseTech" class="accordion-collapse collapse" aria-labelledby="headingTech" data-bs-parent="#accordionExample">
+      <div id="collapseTech" class="accordion-collapse collapse" aria-labelledby="headingTech" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
-      Icebox uses the following steps to back up xpubs in a 2-of-3 multisig quorum:<br><br>
+      Icebox uses the following steps to back up xpubs in a 2-of-3 multisig wallet:<br><br>
       <ol>
       <li style="text-align:left">Remove all prefixes (e.g. "xpub"), and decode your extended public keys from base58 into binary.
 
       <li style="text-align:left">Prepend each binary buffer with its corresponding new, shortened prefix:
-      <br>
+      <div class="spacer"></div>
       xpub: 0000h<br>
       ypub: 0001h<br>
       Ypub: 0002h<br>
       zpub: 0003h<br>
       Zpub: 0004h
+      <div class="spacer"></div>
+      Three sets of 80 bytes of binary data are now ready to be encrypted and pushed into three separate bitcoin transactions.
 
-      <li>You should now have 3 sets of 80 bytes of binary data ready to be encrypted and pushed into 3 separate bitcoin transactions.
+      <li>Using <b>xpub1</b> and <b>xpub2</b>, create a 2-of-2 P2WSH multisig wallet.
+      <div class="spacer"></div>
+      Send a transaction to the first receive address (0/0) of this wallet with an OP_RETURN that contains <b>xpub3</b> encrypted with SHA-256(xpub1 + xpub2)*.
 
-      <li>Using xpub1 and xpub2, create a 2-of-2 P2WSH multisig wallet.
+      <li>Using <b>xpub2</b> and <b>xpub3</b>, create a 2-of-2 P2WSH multisig wallet.
+      <div class="spacer"></div>
+      Send a transaction to the first receive address (0/0) of this wallet with an OP_RETURN that contains <b>xpub1</b> encrypted with SHA-256(xpub2 + xpub3).*
 
-      <li>Send a transaction to the first receive address (0/0) of the wallet from step 4 with an OP_RETURN that contains xpub3 encrypted with SHA-256(xpub1 + xpub2)*.
-
-      <li>Using xpub2 and xpub3, create a 2-of-2 P2WSH multisig wallet.
-
-      <li>Send a transaction to the first receive address (0/0) of the wallet from step 6 with an OP_RETURN that contains xpub1 encrypted with SHA-256(xpub2 + xpub3).*
-
-      <li>Using xpub1 and xpub3, create a 2-of-2 P2WSH multisig wallet.
-
-      <li>Send a transaction to the first receive address (0/0) of the wallet from step 8 with an OP_RETURN that contains xpub2 encrypted with SHA-256(xpub1 + xpub3).*
+      <li>Using <b>xpub1</b> and <b>xpub3</b>, create a 2-of-2 P2WSH multisig wallet.
+      <div class="spacer"></div>
+      Send a transaction to the first receive address (0/0) of this wallet with an OP_RETURN that contains <b>xpub2</b> encrypted with SHA-256(xpub1 + xpub3).*
       </ol>
-      * The AES-256 encryption keys are the SHA-256 hash of the two sorted, concatenated xpubs. Using AES in CBC mode, the initialization vector (IV) is set to the first 16 bytes of the transaction's first input: its 4 byte vout prepended to the first 12 bytes of its txid.
+      * Icebox uses AES-256 in CBC mode. Encryption keys are the SHA-256 hash of the two sorted, concatenated xpubs. The initialization vector (IV) is set to the transaction's first input's 4 byte vout prepended to the first 12 bytes of its txid.
       </div>
       </div>
     </div>
@@ -504,6 +538,11 @@ $("textarea").click(function () {
    $(this).select();
 });
 
+function collapseAccordion() {
+  $('.accordion-collapse').removeClass('show');
+  $('.accordion-button').addClass('collapsed');
+}
+
 function backup() {
   $('#backup').show();
   $('#welcome').hide();
@@ -530,6 +569,7 @@ function back() {
   $('#welcome').show();
   $('#retrieve').hide();
   $('#faqs').hide();
+  collapseAccordion();
 }
 
 /*
