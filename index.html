@@ -337,12 +337,12 @@ Can't find one of your extended public keys? Tell us the&nbsp;<span class="hide-
         </button>
       </h2>
       <div id="collapseTech" class="accordion-collapse collapse" aria-labelledby="headingTech" data-bs-parent="#accordionFAQ">
-        <div class="accordion-body">
+        <div class="accordion-body" style="text-align:left">
       Icebox uses the following steps to back up xpubs in a 2-of-3 multisig wallet:<br><br>
       <ol>
-      <li style="text-align:left">Remove all prefixes (e.g. "xpub"), and decode your extended public keys from base58 into binary.
+      <li>Remove all prefixes (e.g. "xpub"), and decode your extended public keys from base58 into binary.
 
-      <li style="text-align:left">Prepend each binary buffer with its corresponding new, shortened prefix:
+      <li>Prepend each binary buffer with its corresponding new, shortened prefix:
       <div class="spacer"></div>
       xpub: 0000h<br>
       ypub: 0001h<br>
