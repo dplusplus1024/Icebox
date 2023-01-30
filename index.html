@@ -41,6 +41,11 @@ a {
   font-weight:bold;
   /* color:#159ab4; */
 }
+textarea {
+  border-radius:0px;
+  border:1px solid darkgray;
+  background-color:#f5f3f3;
+}
 input {
   border-radius:0px;
   border:1px solid darkgray;
@@ -152,9 +157,7 @@ button:focus {
     padding-left: 40px;
     padding-right: 40px;
   }
-  #welcome {
-    padding: 40px;
-  }
+
   #footer-social {
     line-height:10px;
   }
@@ -311,6 +314,44 @@ Back up your <span class="hide-on-mobile">extended public keys in a place<br>tha
       </div>
     </div>
     <div class="accordion-item">
+      <h2 class="accordion-header" id="headingSpam">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpam" aria-expanded="false" aria-controls="collapseSpam">
+          You're spamming the blockchain!
+        </button>
+      </h2>
+      <div id="collapseSpam" class="accordion-collapse collapse" aria-labelledby="headingSpam" data-bs-parent="#accordionFAQ">
+        <div class="accordion-body">
+          Forget tail emissions or demurrage, Icebox is projected to singlehandedly support bitcoin's emerging fee market + security budget. Just kidding, Icebox only needs a one-time investment of 729 vBytes to protect your bitcoin for literal decades (centuries?) to come. Furthermore, nodes may choose to prune out OP_RETURN data should they need to save space.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingDoxx">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDoxx" aria-expanded="false" aria-controls="collapseDoxx">
+          Don't doxx my xpubs on-chain.
+        </button>
+      </h2>
+      <div id="collapseDoxx" class="accordion-collapse collapse" aria-labelledby="headingDoxx" data-bs-parent="#accordionFAQ">
+        <div class="accordion-body">
+          Your data is safely encrypted. If you lose xpub1, you'll need both xpub2 and xpub3 to restore it. This also means that a single leaked xpub will not reveal to the world that you're a user of multisig and cannot be used to find the other two.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTrust">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTrust" aria-expanded="false" aria-controls="collapseTrust">
+          I don't trust Icebox with my xpubs.
+        </button>
+      </h2>
+      <div id="collapseTrust" class="accordion-collapse collapse" aria-labelledby="headingTrust" data-bs-parent="#accordionFAQ">
+        <div class="accordion-body">
+          Icebox is open source, and we don't store your xpubs on our servers. Transaction fees are paid using BOLT11 Lightning invoices, so your privacy is protected from on-chain analysis, too.
+          <div class="spacer"></div>
+          But don't trust, verify! Icebox is not only an app - it's also a protocol. You can write your own Icebox implementation, or you can run our code locally.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
       <h2 class="accordion-header" id="heading7">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
           Are all quorums supported?
@@ -330,7 +371,19 @@ Back up your <span class="hide-on-mobile">extended public keys in a place<br>tha
       </h2>
       <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="heading8" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
-          Your multisig configuration file contains your wallet's xpubs, derivation paths, and master fingerprints. Icebox has your xpubs covered, but what about the other parts? Fingerprints are less important, so technically it's okay if we omit them. Derivation paths, however, are an absolutely necessary part of your backup. We strongly suggest that you stick to an industry standard such as m/48'/0'/0'/2', carefully notating these BIP32 paths on your seed plates along with your private keys.
+          Your multisig configuration file contains your wallet's xpubs, derivation paths, and master fingerprints. Icebox has your xpubs covered, but what about the other parts? Fingerprints are less important, so it's okay if we omit them. Derivation paths, however, are an absolutely necessary part of your backup, therefore we strongly suggest that you stick to an industry standard such as m/48'/0'/0'/2'.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingIntegrate">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIntegrate" aria-expanded="false" aria-controls="collapseIntegrate">
+          I want to add this to my product.
+        </button>
+      </h2>
+      <div id="collapseIntegrate" class="accordion-collapse collapse" aria-labelledby="headingIntegrate" data-bs-parent="#accordionFAQ">
+        <div class="accordion-body">
+          Have a bitcoin company or application and want to integrate Icebox? Go for it! We'd love to see Icebox become an industry standard.
         </div>
       </div>
     </div>
@@ -341,8 +394,9 @@ Back up your <span class="hide-on-mobile">extended public keys in a place<br>tha
         </button>
       </h2>
       <div id="collapseTech" class="accordion-collapse collapse" aria-labelledby="headingTech" data-bs-parent="#accordionFAQ">
-        <div class="accordion-body" style="text-align:left">
-      Icebox uses the following steps to back up xpubs in a 2-of-3 multisig wallet:<br><br>
+      <div class="accordion-body" style="text-align:left; margin-bottom:-10px">
+      Icebox uses the following steps to back up xpubs in a 2-of-3 multisig wallet:
+      <div class="spacer"></div>
       <ol>
       <li>Remove all prefixes (e.g. "xpub"), and decode your extended public keys from base58 into binary.
 
@@ -369,6 +423,8 @@ Back up your <span class="hide-on-mobile">extended public keys in a place<br>tha
       Send a transaction to the first receive address (0/0) of this wallet with an OP_RETURN that contains <b>xpub2</b> encrypted with SHA-256(xpub1 + xpub3).*
       </ol>
       * Icebox uses AES-256 in CBC mode. Encryption keys are the SHA-256 hash of the two sorted, concatenated xpubs. The initialization vector (IV) is set to the transaction's first input's 4 byte vout prepended to the first 12 bytes of its txid.
+      <div class="spacer"></div>
+      <b>Acknowledgements:</b> Portland HODL for his love of P2MS.
       </div>
       </div>
     </div>
@@ -411,16 +467,18 @@ Back up your <span class="hide-on-mobile">extended public keys in a place<br>tha
 </footer>
 
 <script>
+// shorten the xpubs...
 function truncate(input) {
   var amount = 17
   if (innerWidth < 600)
     amount = 15;
-  var truncate = input.substring(0, amount) + '...' + input.substring(input.length-amount, input.length);
+  var truncate = input.substring(0, amount) + '...';
+  // var truncate = input.substring(0, amount) + '...' + input.substring(input.length-amount, input.length);
   return "<span title=" + input + "><b style='font-weight:500'>" + truncate + "</b></span>";
 }
-
+// shorten the txids...
 function truncateTxid(input) {
-  var amount = 15;
+  var amount = 14;
   if (innerWidth < 600) {
     var truncate = input.substring(0, amount) + '...' + input.substring(input.length-amount, input.length);
     return "<span title=" + input + ">" + truncate + "</span>";
@@ -430,7 +488,7 @@ function truncateTxid(input) {
 
 function backupResult(response) {
   var results = $('#backup-results');
-  if (response[3] == false) { // already backed up, no new backup needed? todo: match data ALSO todo: make sure they're unique!!
+  if (response[3] == false) { // already backed up, no new backup needed? todo: match data ALSO todo: make sure they're unique!! and strip whitespace...
       // need to validate that the xpubs received are correct
       var txid1 = response[0][1];
       var txid2 = response[1][1];
@@ -449,9 +507,9 @@ function backupResult(response) {
       if (confirm1 && confirm2 && confirm3)
         confirmed = true;
 
-      results.html("<br><b>Your data is already backed up.</b><br><br>" + truncate(xpub1) + " was found in transaction: <a class='txid' href=https://mempool.space/tx/" + txid1 + '>' + truncateTxid(txid1) + "</a><br><br>");
-      results.append(truncate(xpub2) + " was found in transaction: <a class='txid' href=https://mempool.space/tx/" + txid2 + ">" + truncateTxid(txid2) + "</a><br><br>");
-      results.append(truncate(xpub3) + " was found in transaction: <a class='txid' href=https://mempool.space/tx/" + txid3 + ">" + truncateTxid(txid3) + "</a></span>");
+      results.html("<br><b>Your data is already backed up.</b><br><br>" + truncate(xpub1) + " was found in: <a class='txid' href=https://mempool.space/tx/" + txid1 + '>' + truncateTxid(txid1) + "</a><br><br>");
+      results.append(truncate(xpub2) + " was found in: <a class='txid' href=https://mempool.space/tx/" + txid2 + ">" + truncateTxid(txid2) + "</a><br><br>");
+      results.append(truncate(xpub3) + " was found in: <a class='txid' href=https://mempool.space/tx/" + txid3 + ">" + truncateTxid(txid3) + "</a></span>");
 
       if (confirmed)
         results.append("<br><br>These transactions are <b>confirmed</b>.");
@@ -472,7 +530,7 @@ function retrieveResult(response) {
       $('#retrieve-results').html("<br><b>We found a backup on chain, however it's a duplicate of one of the xpubs you provided:</b> " + missingXpub);
     }
     else {
-      $('#retrieve-results').html("<br><b>We successfully recovered your lost key:</b><br><textarea onclick='$(this).select();' style='width:100%; height:54px'>" + missingXpub + "</textarea>");
+      $('#retrieve-results').html("<br><b>We successfully recovered your <span class='hide-on-mobile'>lost </span>key:</b><br><textarea onclick='$(this).select();' style='width:100%; height:54px'>" + missingXpub + "</textarea>");
       if (confirmed) {
         $('#retrieve-results').append("<br><br><b>Found in transaction:</b> <a class='txid' href=https://mempool.space/tx/" + txid + ">" + truncateTxid(txid) + "</a>");
         $('#retrieve-results').append("<br><br>This transaction is <b>confirmed</b>.");
@@ -485,7 +543,7 @@ function retrieveResult(response) {
 
   }
   else {
-    $('#retrieve-results').html("We couldn't find a backup for your quorum.");
+    $('#retrieve-results').html("We couldn't find a backup of your keys.");
   }
 }
 
