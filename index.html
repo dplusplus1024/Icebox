@@ -122,11 +122,14 @@ button {
   background-color:black;
   color:white;
   border:0px;
-  padding:4px 12px;
+  padding:5px 14px;
   border-radius:0px;
 }
 button:focus {
     outline: none;
+}
+.submit {
+  margin-top:-6px;
 }
 /* BOOTSTRAP STUFF */
 .accordion-button:not(.collapsed) {
@@ -177,12 +180,12 @@ button:focus {
   input {
     width:100%;
   }
-  ol {
-    padding-left: 16px;
-  }​
   button {
     width:100%;
   }
+  ol {
+    padding-left:17px;
+  }​
   #made-with {
     /* margin-bottom:7px!important; */
   }
@@ -215,7 +218,7 @@ Back up your <span class="hide-on-mobile">extended public keys in a place<br>tha
 <br>
 <label>Key 3</label> <input id="xpub3" type="text" name="xpub3" value="xpub6DriL9JybHWzjntd2ShQMh8pqxAmS1rH6hbcXCm2JyCpBjAj2sKvLV6hLu1L7BKyUoBPPszLd9AbZ7PHno6UmpN64gxD7ABvNiVPacmDHTT">
 <br><br>
-<button type="submit" value="Submit">Submit</button>
+<button class="submit" type="submit" value="Submit">Submit</button>
 </form>
 <div id="backup-results" style="word-wrap: break-word;"></div>
 <br>
@@ -234,7 +237,7 @@ Back up your <span class="hide-on-mobile">extended public keys in a place<br>tha
 <br>
 <label>Key 2</label> <input id="xpub2-lookup" type="text" name="xpub2Lookup" value="xpub6EFTuPq8fCVVUtJwrNrLvSzs1SheJuiXD7vLPT9iHs1f3ZYqcxGK3W5mwz3ES1tkSYUCDDe6AXpvUfdkgv1fayotLNMhj5Wwk9Uc3un99Wc">
 <br><br>
-<button type="submit" value="Submit">Submit</button>
+<button class="submit" type="submit" value="Submit">Submit</button>
 </form>
 <div id="retrieve-results" style="word-wrap: break-word;"></div>
 <br>
