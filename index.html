@@ -177,6 +177,9 @@ button:focus {
   input {
     width:100%;
   }
+  ol {
+    padding-left: 16px;
+  }​
   button {
     width:100%;
   }
@@ -280,12 +283,12 @@ Back up your <span class="hide-on-mobile">extended public keys in a place<br>tha
     <div class="accordion-item">
       <h2 class="accordion-header" id="heading4">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-          I can just re-derive my xpubs.
+          I can just re-derive them.
         </button>
       </h2>
       <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
-          If you don't lose any of your private keys, you have no problem. But the whole point of having a 2-of-3 multisig wallet is that you're mentally prepared to incur one key loss. If your backup plan is to simply re-derive all of your public keys, you're ngmi.
+          If you don't lose any of your private keys, you have no problem. But the whole point of having a 2-of-3 multisig wallet is that you're mentally prepared to incur up to one key loss. If your backup plan is to simply re-derive all of your public keys, you're ngmi.
         </div>
       </div>
     </div>
@@ -328,7 +331,7 @@ Back up your <span class="hide-on-mobile">extended public keys in a place<br>tha
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingDoxx">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDoxx" aria-expanded="false" aria-controls="collapseDoxx">
-          Don't doxx my xpubs on-chain.
+          Don't doxx my xpubs on chain.
         </button>
       </h2>
       <div id="collapseDoxx" class="accordion-collapse collapse" aria-labelledby="headingDoxx" data-bs-parent="#accordionFAQ">
@@ -347,7 +350,7 @@ Back up your <span class="hide-on-mobile">extended public keys in a place<br>tha
         <div class="accordion-body">
           Icebox is open source, and we don't store your xpubs on our servers. Transaction fees are paid using BOLT11 Lightning invoices, so your privacy is protected from on-chain analysis, too.
           <div class="spacer"></div>
-          But don't trust, verify! Icebox is not only an app - it's also a protocol. You can write your own Icebox implementation, or you can run our code locally.
+          But don't trust, verify! Icebox is not only an app - it's also a protocol. You can write your own implementation, or you can run our code locally.
         </div>
       </div>
     </div>
@@ -371,7 +374,7 @@ Back up your <span class="hide-on-mobile">extended public keys in a place<br>tha
       </h2>
       <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="heading8" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
-          Your multisig configuration file contains your wallet's xpubs, derivation paths, and master fingerprints. Icebox has your xpubs covered, but what about the other parts? Fingerprints are less important, so it's okay if we omit them. Derivation paths, however, are an absolutely necessary part of your backup, therefore we strongly suggest that you stick to an industry standard such as m/48'/0'/0'/2'.
+          Your multisig configuration file contains your wallet's xpubs, derivation paths, and master fingerprints. Icebox has your xpubs covered, but what about the other parts? Fingerprints are less important, so it's okay if we omit them. Derivation paths, however, are an absolutely necessary part of your backup, therefore we strongly suggest sticking to an industry standard such as m/48'/0'/0'/2'.
         </div>
       </div>
     </div>
@@ -412,19 +415,19 @@ Back up your <span class="hide-on-mobile">extended public keys in a place<br>tha
 
       <li>Using <b>xpub1</b> and <b>xpub2</b>, create a 2-of-2 P2WSH multisig wallet.
       <div class="spacer"></div>
-      Send a transaction to the first receive address (0/0) of this wallet with an OP_RETURN that contains <b>xpub3</b> encrypted with SHA-256(xpub1 + xpub2)*.
+      Send a transaction to the first receive address (0/0) of this wallet with an OP_RETURN containing <b>xpub3</b> encrypted with SHA-256(xpub1 + xpub2).*
 
       <li>Using <b>xpub2</b> and <b>xpub3</b>, create a 2-of-2 P2WSH multisig wallet.
       <div class="spacer"></div>
-      Send a transaction to the first receive address (0/0) of this wallet with an OP_RETURN that contains <b>xpub1</b> encrypted with SHA-256(xpub2 + xpub3).*
+      Send a transaction to the first receive address (0/0) of this wallet with an OP_RETURN containing <b>xpub1</b> encrypted with SHA-256(xpub2 + xpub3).*
 
       <li>Using <b>xpub1</b> and <b>xpub3</b>, create a 2-of-2 P2WSH multisig wallet.
       <div class="spacer"></div>
-      Send a transaction to the first receive address (0/0) of this wallet with an OP_RETURN that contains <b>xpub2</b> encrypted with SHA-256(xpub1 + xpub3).*
+      Send a transaction to the first receive address (0/0) of this wallet with an OP_RETURN containing <b>xpub2</b> encrypted with SHA-256(xpub1 + xpub3).*
       </ol>
-      * Icebox uses AES-256 in CBC mode. Encryption keys are the SHA-256 hash of the two sorted, concatenated xpubs. The initialization vector (IV) is set to the transaction's first input's 4 byte vout prepended to the first 12 bytes of its txid.
+      * Icebox uses AES-256 in CBC mode. Encryption keys are the SHA-256 hash of the two sorted, concatenated xpubs. The initialization vector (IV) is set to the first input of the transaction's 4 byte vout prepended to the first 12 bytes of its txid.
       <div class="spacer"></div>
-      <b>Acknowledgements:</b> Portland HODL for his love of P2MS.
+      <b>Acknowledgements:</b> Portland HODL for his inspiration + love of P2MS.
       </div>
       </div>
     </div>
