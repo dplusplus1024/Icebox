@@ -183,8 +183,8 @@ button:focus {
   button {
     width:100%;
   }
-  ol {
-      margin-left:2px;
+  #ol-div {
+    margin-left:2px;
   }​
   #made-with {
     /* margin-bottom:7px!important; */
@@ -402,6 +402,7 @@ Back up your <span class="hide-on-mobile">extended public keys in a place<br>tha
       <div id="collapseTech" class="accordion-collapse collapse" aria-labelledby="headingTech" data-bs-parent="#accordionFAQ">
       <div class="accordion-body" style="text-align:left; margin-bottom:-10px">
       Icebox uses the following steps to back up xpubs in a 2-of-3 multisig wallet:
+      <div id="ol-div">
       <div class="spacer"></div>
       <ol>
       <li>Remove all prefixes (e.g. "xpub"), and decode your extended public keys from base58 into binary.
@@ -431,6 +432,7 @@ Back up your <span class="hide-on-mobile">extended public keys in a place<br>tha
       * Icebox uses AES-256 in CBC mode. Encryption keys are the SHA-256 hash of the two sorted, concatenated xpubs. The initialization vector (IV) is set to the first input of the transaction's 4 byte vout prepended to the first 12 bytes of its txid.
       <div class="spacer"></div>
       <b>Acknowledgements:</b> Portland HODL for his inspiration + love of P2MS.
+      </div> <!-- ol-div -->
       </div>
       </div>
     </div>
